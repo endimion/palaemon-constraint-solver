@@ -26,6 +26,9 @@ public class PassengerIncident {
     private String passengerLanguage;
     private PassengerSpecialConditions healthCondition;
     private String deck;
+    private String geofence;
+    private String xLoc;
+    private String yLoc;
 
 
 

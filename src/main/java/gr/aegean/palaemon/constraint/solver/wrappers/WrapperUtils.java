@@ -28,6 +28,9 @@ public class WrapperUtils {
         result.setDeck(incident.getDeck());
         result.setName(incident.getName());
         result.setSurname(incident.getSurname());
+        result.setGeofence(incident.getGeofence());
+        result.setXLoc(incident.getXLoc());
+        result.setYLoc(incident.getYLoc());
         return result;
     }
 }
