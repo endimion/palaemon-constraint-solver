@@ -55,7 +55,7 @@ public class PassengerIncidentConstraintProvider implements ConstraintProvider {
     Constraint crewNotAssigned(ConstraintFactory constraintFactory) {
         return constraintFactory.forEach(PassengerIncident.class)
                 .filter(passengerIncident -> passengerIncident.getCrewMember().getAssignmentStatus().equals(AssignmentStatusEnum.ASSIGNED))
-                .penalize("Crew Member must be not be already assigned the incident",  HardSoftScore.ONE_HARD, value -> 20);
+                .penalize("Crew Member must not be  already assigned to another incident",  HardSoftScore.ONE_HARD, value -> 20);
     }
 
 
