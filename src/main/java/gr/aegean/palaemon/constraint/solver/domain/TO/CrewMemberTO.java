@@ -38,4 +38,7 @@ public class CrewMemberTO {
         hash = 89 * hash + (this.crewMemberId == null ? 0 : this.crewMemberId.toUpperCase().hashCode());
         return hash;
     }
+
+
+
 }

@@ -59,4 +59,12 @@ public class PassengerIncidentConstraintProvider implements ConstraintProvider {
     }
 
 
+    // hard constraint. Only one crew member should be assigned
+    Constraint onlyOneCrewMember(ConstraintFactory constraintFactory) {
+        return constraintFactory.forEach(PassengerIncident.class)
+                .filter(passengerIncident -> passengerIncident.getCrewMember().getAssignmentStatus().equals(AssignmentStatusEnum.ASSIGNED))
+                .penalize("Crew Member must not be  already assigned to another incident",  HardSoftScore.ONE_HARD, value -> 20);
+    }
+
+
 }
