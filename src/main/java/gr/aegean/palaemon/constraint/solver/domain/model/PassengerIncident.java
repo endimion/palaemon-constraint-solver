@@ -42,6 +42,7 @@ public class PassengerIncident {
     //returns the distance of the assigned to the incident crew member
     // part of the planning is to minimize the sum of these values
     public int getAssignedMemberDistance(){
+        if(this.crewMember.getDistanceFromIncidents().get(this.incidentId) == null )return 10000;
         return this.crewMember.getDistanceFromIncidents().get(this.incidentId);
     }
 }

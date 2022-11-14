@@ -41,18 +41,18 @@ public class CrewMember {
     public boolean canAssist(PassengerSpecialConditions condition) {
         switch (this.emergencyDuty) {
             case BOAT_PREPARATION_UNIT:
-                return Arrays.stream((new PassengerSpecialConditions[]{GAIT, NORMAL_PREGNANCY, VISUALLY_IMPAIRED})).collect(Collectors.toList()).contains(condition);
+                return Arrays.stream((new PassengerSpecialConditions[]{GAIT, NORMAL_PREGNANCY, VISUALLY_IMPAIRED,NONE,NO_CONDITION})).collect(Collectors.toList()).contains(condition);
             case FIRST_RESPONSE_UNIT:
             case MEDICAL_UNIT:
             case FIRST_AID_UNIT:
                 return Arrays.stream((new PassengerSpecialConditions[]{GAIT, NORMAL_PREGNANCY, VISUALLY_IMPAIRED,
                         HEARING_IMPAIRED, COGNITIVE_IMPAIRED, COMPLICATED_PREGNANCY, HEAVE_DOSES, MEDICAL_EQUIP_NEEDED, STRETCHER,
-                        SEVER_WALKING_DISABILITY})).collect(Collectors.toList()).contains(condition);
+                        SEVER_WALKING_DISABILITY, NO_CONDITION,NONE})).collect(Collectors.toList()).contains(condition);
             case PASSENGER_ASSISTANCE_UNIT:
             case CABIN_SEARCH_UNIT:
                 return Arrays.stream((new PassengerSpecialConditions[]{GAIT, NORMAL_PREGNANCY, VISUALLY_IMPAIRED,
                         HEARING_IMPAIRED, COGNITIVE_IMPAIRED, COMPLICATED_PREGNANCY, HEAVE_DOSES,
-                        SEVER_WALKING_DISABILITY})).collect(Collectors.toList()).contains(condition);
+                        SEVER_WALKING_DISABILITY,NO_CONDITION,NONE})).collect(Collectors.toList()).contains(condition);
             case PASSENGER_MUSTERING_UNIT:
             default:
                 return false;

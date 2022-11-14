@@ -55,23 +55,26 @@ public class AssignmentControllers {
         // if the provided Crew Members are more than the Incidents
         if (assignmentRequestTO.getCrewMembers().size() > assignmentRequestTO.getIncidents().size()) {
             // For each of the incident fetch the incident type
-            response.getPassengerIncidentList().stream().filter(incidentAssignmentTO -> {
-                return incidentAssignmentTO.getHealthCondition().equals(PassengerSpecialConditions.STRETCHER)
-                        || incidentAssignmentTO.getHealthCondition().equals(PassengerSpecialConditions.UNABLE_TO_WALT)
-                        || incidentAssignmentTO.getHealthCondition().equals(PassengerSpecialConditions.MEDICAL_EQUIP_NEEDED)
-                        || incidentAssignmentTO.getHealthCondition().equals(PassengerSpecialConditions.SEVER_WALKING_DISABILITY);
-            }).forEach(incidentAssignmentTO -> {
-                // select the crew member that is the closest to the incident
-                String incidentId = incidentAssignmentTO.getIncidentId();
-                Optional<CrewMemberTO> memberToAdd = freeCrewMembers.stream().filter(crewMemberTO -> {
-                    return crewMemberTO.getDistanceFromIncidents().get(incidentId) < 1000; //TODO
-                }).findAny();
-                // add it to the assignment and remove it from the free
-                memberToAdd.ifPresent(crewMemberTO -> {
-                    incidentAssignmentTO.getCrewMembers().add(crewMemberTO);
-                    freeCrewMembers.remove(memberToAdd.get());
-                });
-            });
+            response.getPassengerIncidentList().
+//                    filter(incidentAssignmentTO -> {
+//                        return incidentAssignmentTO.getHealthCondition().equals(PassengerSpecialConditions.STRETCHER)
+//                                || incidentAssignmentTO.getHealthCondition().equals(PassengerSpecialConditions.UNABLE_TO_WALT)
+//                                || incidentAssignmentTO.getHealthCondition().equals(PassengerSpecialConditions.MEDICAL_EQUIP_NEEDED)
+//                                || incidentAssignmentTO.getHealthCondition().equals(PassengerSpecialConditions.SEVER_WALKING_DISABILITY);
+//                    }).
+                    forEach(incidentAssignmentTO -> {
+                        // select the crew member that is the closest to the incident
+                        String incidentId = incidentAssignmentTO.getIncidentId();
+                        Optional<CrewMemberTO> memberToAdd = freeCrewMembers.stream().filter(crewMemberTO -> {
+                            return crewMemberTO.getDistanceFromIncidents().get(incidentId) != null &&
+                                    crewMemberTO.getDistanceFromIncidents().get(incidentId) < 1000; //TODO
+                        }).findAny();
+                        // add it to the assignment and remove it from the free
+                        memberToAdd.ifPresent(crewMemberTO -> {
+                            incidentAssignmentTO.getCrewMembers().add(crewMemberTO);
+                            freeCrewMembers.remove(memberToAdd.get());
+                        });
+                    });
 
 
         }

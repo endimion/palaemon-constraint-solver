@@ -15,7 +15,9 @@ public enum PassengerSpecialConditions {
     STRETCHER("stretcher"),
     HEAVE_DOSES("heavy_doses"),
     COMPLICATED_PREGNANCY("complicated"),
-    NORMAL_PREGNANCY("normal");
+    NORMAL_PREGNANCY("normal"),
+    NO_CONDITION(""),
+    NONE("none");
 
 
     private final String condition;

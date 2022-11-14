@@ -36,6 +36,7 @@ public class AssigmentTests {
         Map<String,Integer> crw1Distance = new HashMap<>();
         crw1Distance.put("incident1", 10);
         crw1Distance.put("incident2", 30);
+        crw1Distance.put("incident3", 60);
         crewMember1.setDistanceFromIncidents(crw1Distance);
 
         // Second Crew Member
@@ -54,6 +55,7 @@ public class AssigmentTests {
         Map<String,Integer> crw2Distance = new HashMap<>();
         crw2Distance.put("incident1", 9);
         crw2Distance.put("incident2", 35);
+        crw2Distance.put("incident3", 27);
         crewMember2.setDistanceFromIncidents(crw2Distance);
 
         // Third Crew Member
@@ -71,6 +73,7 @@ public class AssigmentTests {
         Map<String,Integer> crw3Distance = new HashMap<>();
         crw3Distance.put("incident1", 11);
         crw3Distance.put("incident2", 36);
+        crw3Distance.put("incident3", 17);
         crewMember3.setDistanceFromIncidents(crw3Distance);
 
 
@@ -91,6 +94,14 @@ public class AssigmentTests {
         incident2.setPassengerLanguage("gr");
 
 
+        PassengerIncident incident3 = new PassengerIncident();
+        incident3.setIncidentId("incident3");
+        incident3.setName("passengerName3");
+        incident3.setSurname("passengerSurname3");
+        incident3.setHealthCondition(PassengerSpecialConditions.NO_CONDITION);
+        incident3.setPassengerLanguage("en");
+
+
         List<CrewMember> crewMemberList = new ArrayList<>();
         crewMemberList.add(crewMember1);
         crewMemberList.add(crewMember2);
@@ -99,6 +110,7 @@ public class AssigmentTests {
         List<PassengerIncident> incidentList = new ArrayList<>();
         incidentList.add(incident1);
         incidentList.add(incident2);
+        incidentList.add(incident3);
 
         unsolvedPassengerIncidentAssignment.setCrewMemberList(crewMemberList);
         unsolvedPassengerIncidentAssignment.setPassengerIncidentList(incidentList);
